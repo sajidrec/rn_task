@@ -5,6 +5,8 @@ import { styles } from './UserListScreen.styles'
 
 const UserListScreen = ({ route }) => {
 
+  console.log('user list screen rendered');
+
   const { userData } = route.params;
 
   return (
