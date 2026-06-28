@@ -54,7 +54,7 @@ export default function HomeScreen() {
     <SafeAreaView style={styles.container}>
       {updateRquired ? <UpdateModal /> : <View >
 
-        <Pressable style={styles.btnDesign}>
+        <Pressable style={styles.btnDesign} onPress={() => navigation.navigate('CounterScreen')}>
           <Text style={styles.headerText}>Goto Counter</Text>
         </Pressable>
 
