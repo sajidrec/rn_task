@@ -1,11 +1,20 @@
 import { View, Text, Image, FlatList } from 'react-native'
-import React, { useCallback } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { styles } from './UserListScreen.styles'
 import { FlashList } from '@shopify/flash-list';
 
 const UserCard = React.memo(({ item }) => {
-  console.log("UserCard: ", item.id);
+  // console.log("UserCard: ", item.id);
+
+  const renderCount = React.useRef(0);
+  renderCount.current += 1;
+
+  useEffect(() => {
+    console.log("🟢 MOUNTED instance for user:", item.id);
+    return () => console.log("🔴 UNMOUNTED instance for user:", item.id);
+  }, []);
+
   return (<View style={styles.card}>
     <Image
       source={{ uri: item.photo }}
@@ -35,6 +44,7 @@ const UserListScreen = ({ route }) => {
   return (
     <SafeAreaView style={styles.container}>
       <FlashList
+        // debug={true}
         data={userData}
         keyExtractor={(user) => user.id.toString()}
         showsVerticalScrollIndicator={false}
